@@ -10,18 +10,18 @@ from tkinter.messagebox import showerror, showinfo
 def OpenGoogle():
     try:
         from pywhatkit import search
-        sea = simpledialog.askstring(
+        searchit = simpledialog.askstring(
             title="Search", prompt="What do you want to search")
-        if(str(sea) != "None" and str(sea) != "none" and str(sea) != ""):
-            search(sea)
+        if(str(searchit) != "None" and str(searchit) != "none" and str(searchit) != ""):
+            search(searchit)
     except Exception as e:
-        showerror("No Internet", "Oops Something went wrong we cannot connect to internet. Please check your internet connection and try again later")
+        showerror("No Internet", "Oops Something went wrong we cannot connect to internet. Please check your internet connection and try again later",e)
 def changefont(Desired):
     try:
         fonts=simpledialog.askstring("font","Which font you want?")
         Desired['family']=fonts
     except Exception as e:
-        showinfo("Sorry","The font you want is currently unavaialable please try again later")
+        showinfo("Sorry","The font you want is currently unavaialable please try again later",e)
 def Newe(event):
     global file
     root.title('Untitled -Notepad++')
@@ -53,9 +53,9 @@ def Helpe():
     showinfo("Some Basic instructions", " --> For Turning into Dark mode please click on Format and then choose Dark mode.\n\n --> You can also see there is option to change font and select that for changing font and fontsize and all.")
 def DateandTime():
     time_label = Label(text=str(time.asctime(
-        time.localtime(time.time()))), pady=4, font="Arial 19 bold")
-    time_label.pack()
-def Opene(event):
+        time.localtime(time.time()))), font="Arial 19 bold")
+    time_label.pack(pady=4)
+def Opene():
     file = askopenfilename(defaultextension=".txt", filetypes=[
                            ("All Files", "*.*"), ("Text Documents", "*.txt")])
     if(file == ""):
@@ -123,8 +123,8 @@ def saveFile():
         f.close()
 
 root = Tk()
-root.geometry("850x450")
-root.minsize(400, 400)
+root.geometry("900x450")
+root.minsize(500, 400)
 Desired=Font(family="lucida",size="13")
 
 # For title and favicon at the top of tkinter window
